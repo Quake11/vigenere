@@ -1,4 +1,19 @@
 <h1>
   {{title}}
 </h1>
+<md-input-container>
+  <input [(ngModel)]="encoded_text" (keyup)="crackViginere()" mdInput placeholder="Зашифрованный текст" class="encoded-text">
+</md-input-container>
+<br> {{repeatCount(encoded_text)}}
+<br>
+
+<br>
+<hr>
+<br> {{debug}}
+<button color="primary" md-raised-button (click)="crackViginere()">Raised button</button>
+<md-list dense>
+ <md-list-item> Pepper </md-list-item>
+ <md-list-item> Salt </md-list-item>
+ <md-list-item> Paprika </md-list-item>
+</md-list>
 <router-outlet></router-outlet>
