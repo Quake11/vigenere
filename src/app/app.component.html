@@ -1,19 +1,12 @@
 <h1>
   {{title}}
 </h1>
-<md-input-container>
-  <input [(ngModel)]="encoded_text" (keyup)="crackViginere()" mdInput placeholder="Зашифрованный текст" class="encoded-text">
-</md-input-container>
-<br> {{repeatCount(encoded_text)}}
 <br>
-
+<nav md-tab-nav-bar style="display: flex;flex-direction: row;flex-wrap: wrap;justify-content: center;">
+  <a md-tab-link *ngFor="let routeLink of routeLinks" [routerLink]="routeLink.link" routerLinkActive #rla="routerLinkActive"
+    [active]="rla.isActive">
+         {{routeLink.label}}
+  </a>
+</nav>
 <br>
-<hr>
-<br> {{debug}}
-<button color="primary" md-raised-button (click)="crackViginere()">Raised button</button>
-<md-list dense>
- <md-list-item> Pepper </md-list-item>
- <md-list-item> Salt </md-list-item>
- <md-list-item> Paprika </md-list-item>
-</md-list>
 <router-outlet></router-outlet>

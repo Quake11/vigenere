@@ -8,10 +8,17 @@ import 'hammerjs';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { VigenereCrackComponent } from './vigenere-crack/vigenere-crack.component';
+import { VigenereDecodeComponent } from './vigenere-decode/vigenere-decode.component';
+import { VigenereEncodeComponent } from './vigenere-encode/vigenere-encode.component';
+import { VigenereCrackService } from './vigenere-crack.service';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    VigenereCrackComponent,
+    VigenereDecodeComponent,
+    VigenereEncodeComponent
   ],
   imports: [
     BrowserModule,
@@ -21,7 +28,7 @@ import { AppComponent } from './app.component';
     BrowserAnimationsModule,
     MaterialModule
   ],
-  providers: [],
+  providers: [VigenereCrackService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

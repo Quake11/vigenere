@@ -1,0 +1,29 @@
+<md-input-container class="encoded-text-container">
+  <input [(ngModel)]="encoded_text" mdInput placeholder="Вставьте сюда зашифрованный текст" class="encoded-text">
+
+</md-input-container>
+<br>
+<md-input-container>
+  <input type="number" [(ngModel)]="sequenceLength" mdInput placeholder="Длина одинаковых отрезков" min="2">
+</md-input-container>
+
+
+<div *ngIf="gcdList" style="overflow-x:scroll">
+  <br>
+  <table>
+    <tr>
+      <th>НОД(частота)</th>
+      <ng-template ngFor let-gcd [ngForOf]="gcdList">
+        <td> <strong>{{gcd["value"]}}</strong>({{gcd["frequency"]}}) </td>
+      </ng-template>
+    </tr>
+  </table>
+</div>
+
+<br>
+<md-input-container>
+  <input type="number" [value]="maxGcd" mdInput placeholder="Предполагаемая длина ключа">
+</md-input-container>
+<br>
+<button color="primary" md-raised-button (click)="crackViginere()">Взломать шифр</button>
+<br>
