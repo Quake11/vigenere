@@ -1,6 +1,14 @@
 @import '~@angular/material/prebuilt-themes/indigo-pink.css';
 body {
-    margin: 15px;
+    margin: 5px;
     text-align: center;
     font-family: 'Roboto', sans-serif;
+}
+
+.mat-input-placeholder {
+  text-align: center !important;
+}
+
+.mat-input-element {
+    text-align: center;
 }

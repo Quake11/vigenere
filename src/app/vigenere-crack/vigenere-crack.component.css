@@ -1,13 +1,25 @@
-.encoded-text {}
-
-input {
-  min-width: 250px;
+.settings>* {
+  margin-top: 15px;
 }
 
+
+.encoded-text,
+.decoded-text {
+  width: 100%;
+  min-width: 320px;
+  height: 6em;
+}
+
+input {
+  width: 100%;
+}
+
+
+/*
 .encoded-text-container {
   width: 80%;
   margin: 0 30px;
-}
+}*/
 
 table {
   border-collapse: collapse;

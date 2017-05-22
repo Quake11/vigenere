@@ -1,7 +1,6 @@
-<h1>
+<h2>
   {{title}}
-</h1>
-<br>
+</h2>
 <nav md-tab-nav-bar style="display: flex;flex-direction: row;flex-wrap: wrap;justify-content: center;">
   <a md-tab-link *ngFor="let routeLink of routeLinks" [routerLink]="routeLink.link" routerLinkActive #rla="routerLinkActive"
     [active]="rla.isActive">

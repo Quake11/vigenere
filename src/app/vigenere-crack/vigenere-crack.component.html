@@ -1,29 +1,53 @@
-<md-input-container class="encoded-text-container">
-  <input [(ngModel)]="encoded_text" mdInput placeholder="Вставьте сюда зашифрованный текст" class="encoded-text">
-
+<md-input-container>
+  <textarea [(ngModel)]="encoded_text" (ngModelChange)="onEncodedTextChange($event)" mdInput placeholder="Вставьте сюда зашифрованный текст"
+    class="encoded-text"> </textarea>
 </md-input-container>
 <br>
-<md-input-container>
-  <input type="number" [(ngModel)]="sequenceLength" mdInput placeholder="Длина одинаковых отрезков" min="2">
-</md-input-container>
-
-
-<div *ngIf="gcdList" style="overflow-x:scroll">
+<br>
+<md-slide-toggle #settings>Доп. настройки</md-slide-toggle>
+<br>
+<div class="settings" *ngIf="settings.checked">
+  <hr>
+  <md-checkbox [(ngModel)]="deleteSymbols" (change)="onDeleteSymbolsChange($event)">Удалять символы, числа и пробелы из текста</md-checkbox>
+  <br><br>
+  <md-select placeholder="Алфавит" [(ngModel)]="selectedAlphabetId">
+    <md-option *ngFor="let lang of langNames" [value]="lang['id']">
+      {{lang["name"]}}
+    </md-option>
+  </md-select>
   <br>
-  <table>
-    <tr>
-      <th>НОД(частота)</th>
-      <ng-template ngFor let-gcd [ngForOf]="gcdList">
-        <td> <strong>{{gcd["value"]}}</strong>({{gcd["frequency"]}}) </td>
-      </ng-template>
-    </tr>
-  </table>
+  <md-input-container>
+    <input type="number" [(ngModel)]="sequenceLength" mdInput placeholder="Длина одинаковых отрезков" min="2">
+  </md-input-container>
+  <br>
+  <button color="primary" md-raised-button (click)="setGcdList()">Рассчитать длину ключа</button>
+  <div *ngIf="gcdList" style="overflow-x:scroll">
+    <br>
+    <table>
+      <tr>
+        <th>НОД(частота)</th>
+        <ng-template ngFor let-gcd [ngForOf]="gcdList">
+          <td> <strong>{{gcd["value"]}}</strong>({{gcd["frequency"]}}) </td>
+        </ng-template>
+      </tr>
+    </table>
+  </div>
+  <br>
+  <div>
+    <md-input-container>
+      <input type="number" [(ngModel)]="keyLength" #keylength mdInput placeholder="Предполагаемая длина ключа">
+    </md-input-container>
+    <br>
+  </div>
+  <hr>
 </div>
-
 <br>
-<md-input-container>
-  <input type="number" [value]="maxGcd" mdInput placeholder="Предполагаемая длина ключа">
-</md-input-container>
 <br>
 <button color="primary" md-raised-button (click)="crackViginere()">Взломать шифр</button>
+<div *ngIf="guessedKey">
+  <br>Найденный ключ: <strong>{{guessedKey}}</strong>
+</div>
 <br>
+<md-input-container class="decoded-text-container">
+  <textarea [value]="decodedResult" mdInput class="decoded-text"> </textarea>
+</md-input-container>
