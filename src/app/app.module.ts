@@ -13,6 +13,8 @@ import { VigenereDecodeComponent } from './vigenere-decode/vigenere-decode.compo
 import { VigenereEncodeComponent } from './vigenere-encode/vigenere-encode.component';
 import { VigenereCrackService } from './vigenere-crack.service';
 import { CaesarCipherService } from './caesar-cipher.service';
+import { VigenereCipherService } from './vigenere-cipher.service';
+import { UtilsService } from './utils.service';
 
 @NgModule({
   declarations: [
@@ -29,7 +31,12 @@ import { CaesarCipherService } from './caesar-cipher.service';
     BrowserAnimationsModule,
     MaterialModule
   ],
-  providers: [VigenereCrackService, CaesarCipherService],
+  providers: [
+    VigenereCrackService,
+    CaesarCipherService,
+    VigenereCipherService,
+    UtilsService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

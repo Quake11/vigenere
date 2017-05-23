@@ -1,19 +1,25 @@
 import { Injectable } from '@angular/core';
+import { VigenereCipherService } from './vigenere-cipher.service';
+import { CaesarCipherService } from './caesar-cipher.service';
 
 @Injectable()
 export class VigenereCrackService {
 
-  constructor() { }
+  constructor(
+    private vigenereCipherService: VigenereCipherService,
+    private caesarCipherService: CaesarCipherService
+  ) { }
 
-  // create array with numbers that represent distances between sequences  
+  // create array with numbers that represent distances between sequences
   getRepeatDistancesCount(text: string, sequenceLength: number): number[] {
-    if (!text || !sequenceLength)
+    if (!text || !sequenceLength) {
       return null;
-    let repeats: number[] = [];
+    }
+    const repeats: number[] = [];
     for (let i = 0; i < text.length - sequenceLength + 1; i++) {
-      let temp: string = text.substring(i, i + sequenceLength);
+      const temp: string = text.substring(i, i + sequenceLength);
       for (let j: number = i + 1; j < text.length - sequenceLength + 1; j++) {
-        let temp2: string = text.substring(j, j + sequenceLength);
+        const temp2: string = text.substring(j, j + sequenceLength);
         if (temp.toLowerCase() === temp2.toLowerCase()) {
           repeats.push(j - i);
         }
@@ -24,9 +30,10 @@ export class VigenereCrackService {
 
   // get gcd's from array of numbers
   getGCDS(repeats: number[]): number[] {
-    if (!repeats)
+    if (!repeats) {
       return null;
-    let gcds: number[] = [];
+    }
+    const gcds: number[] = [];
     for (let i = 0; i < repeats.length; ++i) {
       gcds.push(this.gcd(repeats[i], repeats[i + 1]));
     }
@@ -35,14 +42,15 @@ export class VigenereCrackService {
 
   // sort array of gcd's, starting with most frequent gcd
   sortGcdsByFrequency(array) {
-    if (!array)
+    if (!array) {
       return null;
-    let frequency = {};
-    let result: any = [];
+    }
+    const frequency = {};
+    const result: any = [];
     array.forEach(function (value) { frequency[value] = 0; }); // fill array with zero frequency values
 
-    let uniques = array.filter(function (value) {
-      return ++frequency[value] == 1; // check if equal element already exists
+    const uniques = array.filter(function (value) {
+      return ++frequency[value] === 1; // check if equal element already exists
     });
 
     uniques.sort(function (a, b) {
@@ -59,38 +67,64 @@ export class VigenereCrackService {
   }
 
 
-
-  splitTextWithKeyLen(text: string, keyLen: number): string[] {
-    let result: string[] = [];
-    for (let i = 0; i < text.length; i++) {
-      typeof result[i % keyLen] === 'undefined' ? result[i % keyLen] = text[i] : result[i % keyLen] += text[i]; // hacky workaround when first element 'undefined' in array
-    }
-    return result;
-  }
-
   analyseFrequency(text: string, alphabet: any) {
-    if (!text)
+    if (!text) {
       return null;
+    }
+    const alphabetLength = alphabet.length;
+    const frequencies: number[] = [];
+    const textLength = text.length;
 
-    let alphabetLength = alphabet.length;
-    let frequencies: number[] = [];
-    let textLength = text.length;
 
-    for (let c in alphabet) {
-      frequencies[alphabet[c]] = 0;
+    for (const c in alphabet) {
+      if (alphabet.hasOwnProperty(c)) {
+        frequencies[alphabet[c]] = 0;
+      }
     }
 
     for (let i = 0; i < textLength; i++) {
-      let c = text[i];
+      const c = text[i];
       frequencies[c]++;
     }
     return frequencies;
   }
 
 
+  guessKey(text, keyLength, alphabetObj) {
+    const keyShifts: number[] = []; // represent vigenere key as array of shifts
+    const decodedParts: any[] = [];
+    const alphabet = alphabetObj['alphabet'];
+    const alphabetPopularLetter = alphabetObj['popular'];
+
+    const caesarCryptograms = this.vigenereCipherService.splitTextWithKeyLen(text, keyLength);
+
+
+    for (const crypt in caesarCryptograms) {
+      if (caesarCryptograms.hasOwnProperty(crypt)) {
+        const frequencies = this.analyseFrequency(caesarCryptograms[crypt], alphabet);
+        const mostPopularLetter = this.getMostPopularLetter(frequencies); // most popular letter in encoded text
+
+        // shift of most popular letter in encoded text
+        const mostPopularLetterShift = this.vigenereCipherService.getShiftFromLetter(mostPopularLetter, alphabet);
+        const popularLetterShift = this.vigenereCipherService.getShiftFromLetter(alphabetPopularLetter, alphabet);
+        const shift: number = mostPopularLetterShift - popularLetterShift;
+        keyShifts.push((shift + alphabet.length) % alphabet.length);
+      }
+    }
+    return keyShifts;
+  }
+
+
+
+  getMostPopularLetter(frequencies) {
+    return Object.keys(frequencies).reduce(function (a, b) { return frequencies[a] > frequencies[b] ? a : b; });
+  }
+
+
   gcd = function (a, b) {
-    if (!b)
+    if (!b) {
       return a;
+    }
     return this.gcd(b, a % b);
   };
 }

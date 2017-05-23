@@ -48,6 +48,6 @@
   <br>Найденный ключ: <strong>{{guessedKey}}</strong>
 </div>
 <br>
-<md-input-container class="decoded-text-container">
+<md-input-container *ngIf="decodedResult" class="decoded-text-container">
   <textarea [value]="decodedResult" mdInput class="decoded-text"> </textarea>
 </md-input-container>

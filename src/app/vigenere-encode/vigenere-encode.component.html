@@ -1,3 +1,16 @@
-<p>
-  vigenere-encode works!
-</p>
+<md-input-container>
+  <textarea [(ngModel)]="encoded_text" (ngModelChange)="onEncodedTextChange($event)" mdInput placeholder="Вставьте сюда текст, который нужно зашифровать"
+    class="encoded-text"> </textarea>
+</md-input-container>
+<br>
+<md-checkbox [(ngModel)]="deleteSymbols" (change)="onDeleteSymbolsChange($event)">Удалять символы, числа и пробелы из текста</md-checkbox>
+<br><br>
+<md-input-container>
+  <input type="text" [(ngModel)]="key" (keyup.enter)="encode()" mdInput placeholder="Ключ">
+</md-input-container>
+<br>
+<md-input-container *ngIf="encodedResult" class="decoded-text-container">
+  <textarea [value]="encodedResult" mdInput class="decoded-text"> </textarea>
+</md-input-container>
+<br>
+<button color="primary" md-raised-button (click)="encode()">Зашифровать</button>

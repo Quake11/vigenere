@@ -5,12 +5,12 @@ export class CaesarCipherService {
 
   constructor() { }
 
-  caesarCipher = function (ciphertext: string, shiftAmount: number, alphabet: string, encipher: boolean) {
+  caesarCipher(ciphertext: string, shiftAmount: number, alphabet: string, encipher: boolean): string {
     shiftAmount = encipher ? -shiftAmount : shiftAmount;
-    let plaintext: string = "";
+    let plaintext = '';
     for (let i = 0; i < ciphertext.length; i++) {
-      let cipherCharacterShift = alphabet.indexOf(ciphertext[i]);
-      let shift: number = (alphabet.length + cipherCharacterShift - shiftAmount) % alphabet.length;
+      const cipherCharacterShift = alphabet.indexOf(ciphertext[i]);
+      const shift: number = (alphabet.length + cipherCharacterShift - shiftAmount) % alphabet.length;
       plaintext += alphabet[shift];
     }
     return plaintext;

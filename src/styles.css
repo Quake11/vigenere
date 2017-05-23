@@ -12,3 +12,10 @@ body {
 .mat-input-element {
     text-align: center;
 }
+
+.encoded-text,
+.decoded-text {
+  width: 100%;
+  min-width: 320px;
+  height: 6em;
+}
