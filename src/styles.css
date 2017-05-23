@@ -1,8 +1,8 @@
 @import '~@angular/material/prebuilt-themes/indigo-pink.css';
 body {
-    margin: 5px;
-    text-align: center;
-    font-family: 'Roboto', sans-serif;
+  margin: 5px;
+  text-align: center;
+  font-family: 'Roboto', sans-serif;
 }
 
 .mat-input-placeholder {
@@ -10,7 +10,7 @@ body {
 }
 
 .mat-input-element {
-    text-align: center;
+  text-align: center;
 }
 
 .encoded-text,
@@ -18,4 +18,9 @@ body {
   width: 100%;
   min-width: 320px;
   height: 6em;
+}
+
+input {
+  width: 100%;
+  min-width: 320px;
 }

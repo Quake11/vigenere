@@ -1,12 +1,17 @@
 <h2>
-    {{title}}
+  {{title}}
 </h2>
 <nav md-tab-nav-bar style="display: flex;flex-direction: row;flex-wrap: wrap;justify-content: center;">
-    <a md-tab-link *ngFor="let routeLink of routeLinks" [routerLink]="routeLink.link" routerLinkActive #rla="routerLinkActive"
-        [active]="rla.isActive">
+  <a md-tab-link *ngFor="let routeLink of routeLinks" [routerLink]="routeLink.link" routerLinkActive #rla="routerLinkActive"
+    [active]="rla.isActive">
          {{routeLink.label}}
   </a>
 </nav>
 <br>
 <router-outlet></router-outlet>
-<span style="font-size: 14px;position: absolute;bottom: 0;left: 0; right: 0;    pointer-events: none;">© Наумов Л.Л. 2017</span>
+<br>
+<button md-button (click)="gotoGithub()" class="github-button">
+    <img src=" ../assets/img/GitHub-Mark-32px.png " alt="GitHub page ">
+    <a href="https://github.com/Quake11rus/vigenere" class="link" target="_blank">GITHUB</a>
+    </button>
+<br>

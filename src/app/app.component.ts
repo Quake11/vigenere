@@ -19,4 +19,9 @@ export class AppComponent {
     ];
 
   }
+
+  gotoGithub(): void {
+    const win = window.open('https://github.com/Quake11rus/vigenere', '_blank');
+    win.focus();
+  }
 }
