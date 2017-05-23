@@ -4,12 +4,19 @@
   font-size: 16px;
 }
 
+.header {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+}
+
 .github-button {
-  padding: 3px 15px;
-  margin: 15px;
-  position: absolute;
-  right: 0;
-  top: 0;
+  padding: 3px 10px;
+  width: 150px;
+  align-self: flex-end;
 }
 
 .github-button a {
@@ -26,4 +33,11 @@
 
 .github-button a:active {
   color: #000;
+}
+
+.navigation {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
 }

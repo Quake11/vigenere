@@ -1,7 +1,13 @@
-<h2>
-  {{title}}
-</h2>
-<nav md-tab-nav-bar style="display: flex;flex-direction: row;flex-wrap: wrap;justify-content: center;">
+<div class="header">
+  <button md-button (click)="gotoGithub()" class="github-button">
+    <img src=" ../assets/img/GitHub-Mark-32px.png " alt="GitHub page ">
+    <a href="https://github.com/Quake11rus/vigenere" class="link" target="_blank">GITHUB</a>
+  </button>
+  <h2 style="margin-top: 0">
+    {{title}}
+  </h2>
+</div>
+<nav md-tab-nav-bar class="navigation">
   <a md-tab-link *ngFor="let routeLink of routeLinks" [routerLink]="routeLink.link" routerLinkActive #rla="routerLinkActive"
     [active]="rla.isActive">
          {{routeLink.label}}
@@ -9,9 +15,3 @@
 </nav>
 <br>
 <router-outlet></router-outlet>
-<br>
-<button md-button (click)="gotoGithub()" class="github-button">
-    <img src=" ../assets/img/GitHub-Mark-32px.png " alt="GitHub page ">
-    <a href="https://github.com/Quake11rus/vigenere" class="link" target="_blank">GITHUB</a>
-    </button>
-<br>
