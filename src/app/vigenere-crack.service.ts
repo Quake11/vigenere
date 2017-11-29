@@ -10,25 +10,28 @@ export class VigenereCrackService {
     private caesarCipherService: CaesarCipherService
   ) { }
 
-  // create array with numbers that represent distances between sequences
+  // function return array with numbers that represent distances between sequences
+  // функция возвращает массив чисел, которые являются расстояниями между одинаковыми последовательностями текста
   getRepeatDistancesCount(text: string, sequenceLength: number): number[] {
     if (!text || !sequenceLength) {
       return null;
     }
     const repeats: number[] = [];
     for (let i = 0; i < text.length - sequenceLength + 1; i++) {
-      const temp: string = text.substring(i, i + sequenceLength);
+      const temp: string = text.substring(i, i + sequenceLength); // берём первую последовательность нужной длины
       for (let j: number = i + 1; j < text.length - sequenceLength + 1; j++) {
-        const temp2: string = text.substring(j, j + sequenceLength);
-        if (temp.toLowerCase() === temp2.toLowerCase()) {
-          repeats.push(j - i);
+        const temp2: string = text.substring(j, j + sequenceLength); // вторая последовательность текста
+        if (temp.toLowerCase() === temp2.toLowerCase()) { // сравнение найденных  последовательностей текста
+          repeats.push(j - i); // добавляем расстояние между последовательностями в массив
         }
       }
     }
     return repeats;
   }
 
-  // get gcd's from array of numbers
+  // function returns gcd's array from array of distances
+  // функция принимает расстояния между одинаковыми участками текста как массив чисел
+  // и возвращает массив всех НОД для этих расстояний
   getGCDS(repeats: number[]): number[] {
     if (!repeats) {
       return null;
@@ -39,6 +42,14 @@ export class VigenereCrackService {
     }
     return gcds;
   }
+
+
+    /*for (let i = 0; i < repeats.length; ++i) {
+      for (let j = i + 1; j < repeats.length; ++j) {
+        gcds.push(this.gcd(repeats[i], repeats[j]));
+      }
+    }*/
+
 
   // sort array of gcd's, starting with most frequent gcd
   sortGcdsByFrequency(array) {
@@ -66,7 +77,8 @@ export class VigenereCrackService {
     return result;
   }
 
-
+  // function returns associative array of letters and their frequencies
+  // функция возвращает ассоциативный массив букв и их частот
   analyseFrequency(text: string, alphabet: any) {
     if (!text) {
       return null;
@@ -74,14 +86,13 @@ export class VigenereCrackService {
     const alphabetLength = alphabet.length;
     const frequencies: number[] = [];
     const textLength = text.length;
-
-
+    // создание массива со всеми буквами выбранного алфавита и заполнение их частот нулями
     for (const c in alphabet) {
       if (alphabet.hasOwnProperty(c)) {
         frequencies[alphabet[c]] = 0;
       }
     }
-
+    // подсчёт частот букв из текста
     for (let i = 0; i < textLength; i++) {
       const c = text[i];
       frequencies[c]++;

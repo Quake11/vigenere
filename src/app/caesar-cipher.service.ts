@@ -5,8 +5,8 @@ export class CaesarCipherService {
 
   constructor() { }
 
-  caesarCipher(ciphertext: string, shiftAmount: number, alphabet: string, encipher: boolean): string {
-    shiftAmount = encipher ? -shiftAmount : shiftAmount;
+  caesarCipher(ciphertext: string, shiftAmount: number, alphabet: string, encode: boolean): string {
+    shiftAmount = encode ? -shiftAmount : shiftAmount;
     let plaintext = '';
     for (let i = 0; i < ciphertext.length; i++) {
       const cipherCharacterShift = alphabet.indexOf(ciphertext[i]);

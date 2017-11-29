@@ -12,11 +12,13 @@ export class VigenereCipherService {
   Cipher(text: string, keyShifts: number[], alphabet: string, encode: boolean): string {
     const timer = performance.now();
     const caesarCryptograms = this.splitTextWithKeyLen(text, keyShifts.length);
-
     const decodedParts: any[] = [];
     for (const key in keyShifts) {
       if (keyShifts.hasOwnProperty(key)) {
-        decodedParts.push(this.caesarCipherService.caesarCipher(caesarCryptograms[key], keyShifts[key], alphabet, encode).split(''));
+        decodedParts.push(
+          this.caesarCipherService.caesarCipher(caesarCryptograms[key], keyShifts[key], alphabet, encode)
+            .split('')
+        );
       }
     }
     const result = this.mergeDecryptedCaesarCryptograms(decodedParts, text.length);

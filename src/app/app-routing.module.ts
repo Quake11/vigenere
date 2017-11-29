@@ -6,9 +6,6 @@ import { VigenereEncodeComponent } from './vigenere-encode/vigenere-encode.compo
 
 const routes: Routes = [
   {
-    path: '', redirectTo: '/crack', pathMatch: 'full'
-  },
-  {
     path: 'crack', component: VigenereCrackComponent,
     children: []
   },
@@ -19,6 +16,9 @@ const routes: Routes = [
   {
     path: 'encode', component: VigenereEncodeComponent,
     children: []
+  },
+  {
+    path: '**', redirectTo: 'crack'
   }
 ];
 

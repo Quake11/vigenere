@@ -1,9 +1,3 @@
-.link {
-  margin: 5px;
-  text-decoration: none;
-  font-size: 16px;
-}
-
 .header {
   display: flex;
   flex-direction: column;
@@ -13,31 +7,31 @@
   justify-content: center;
 }
 
-.github-button {
-  padding: 3px 10px;
-  width: 150px;
-  align-self: flex-end;
-}
-
-.github-button a {
-  color: #000;
-}
-
-.github-button a:visited {
-  color: #000;
-}
-
-.github-button a:hover {
-  color: #000;
-}
-
-.github-button a:active {
-  color: #000;
-}
-
 .navigation {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: center;
+}
+
+.link {
+  margin: 5px 5px 0;
+  text-decoration: none;
+  font-size: 16px;
+}
+
+.link {
+  color: #000;
+}
+
+.link:visited {
+  color: #000;
+}
+
+.link:hover {
+  color: #000;
+}
+
+.link:active {
+  color: #000;
 }

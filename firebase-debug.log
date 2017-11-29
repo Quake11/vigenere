@@ -1,0 +1,23 @@
+[debug] [2017-11-29T18:57:36.239Z] ----------------------------------------------------------------------
+[debug] [2017-11-29T18:57:36.241Z] Command:       /usr/local/bin/node /usr/local/bin/firebase deploy
+[debug] [2017-11-29T18:57:36.241Z] CLI Version:   3.15.3
+[debug] [2017-11-29T18:57:36.241Z] Platform:      darwin
+[debug] [2017-11-29T18:57:36.241Z] Node Version:  v9.2.0
+[debug] [2017-11-29T18:57:36.242Z] Time:          Wed Nov 29 2017 21:57:36 GMT+0300 (MSK)
+[debug] [2017-11-29T18:57:36.242Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2017-11-29T18:57:36.258Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2017-11-29T18:57:36.258Z] > authorizing via signed-in user
+[debug] [2017-11-29T18:57:36.261Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/projects/vigenere-55f55  
+ Wed Nov 29 2017 21:57:36 GMT+0300 (MSK)
+[debug] [2017-11-29T18:57:37.305Z] <<< HTTP RESPONSE 200
+[debug] [2017-11-29T18:57:37.307Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/database/vigenere-55f55/tokens  
+ Wed Nov 29 2017 21:57:37 GMT+0300 (MSK)
+[debug] [2017-11-29T18:57:38.097Z] <<< HTTP RESPONSE 200
+[info] 
+[info] === Deploying to 'vigenere-55f55'...
+[info] 
+[info] i  deploying hosting
+[info] i  hosting: preparing dist directory for upload...
+[debug] [2017-11-29T18:57:39.908Z] >>> HTTP REQUEST PUT https://deploy.firebase.com/v1/hosting/vigenere-55f55/uploads/-L-883CsMDs8Cwwf0OLa?fileCount=8&message=  
+ Wed Nov 29 2017 21:57:39 GMT+0300 (MSK)
